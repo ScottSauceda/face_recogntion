@@ -103,7 +103,7 @@ class App extends Component {
   onButtonSubmit = () => {
     // console.log('click');
     this.setState({imageUrl: this.state.input});
-    fetch('https://thawing-hamlet-94541.herokuapp.com/imageurl', {
+    fetch('https://face-recognition-server-mss.herokuapp.com/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -113,7 +113,7 @@ class App extends Component {
     .then(response => response.json())
     .then(response => {
       if(response){
-        fetch('https://thawing-hamlet-94541.herokuapp.com/image', {
+        fetch('https://face-recognition-server-mss.herokuapp.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
