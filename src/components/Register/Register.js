@@ -23,7 +23,6 @@ class Register extends React.Component {
     }
 
     onSubmitRegister = () => {
-        console.log(this.state);
         fetch('https://face-recognition-server-mss.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},

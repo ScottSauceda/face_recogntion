@@ -10,23 +10,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 
-/*
-
-    Their newest version would require us to 
-    run npm install clarifai-nodejs-grpc 
-    vs 
-    what you will see in the upcoming video which is 
-    npm install clarifai
-
-
-
-so you would change from in the video:
-.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-to:
-.predict('c0c0ac362b03416da06ab3fa36fb58e3', this.state.input)
-
-*/
-
 
 const particlesOptions = {
     particles: {
@@ -61,12 +44,6 @@ class App extends Component {
     this.state = initialState;
   }
 
-  // checking for functionality from the back end
-  // componentDidMount(){
-  //   fetch('http://localhost:3000/')
-  //   .then(response => response.json())
-  //   .then(console.log)
-  // }
 
   loadUser = (data) => {
     this.setState({user : {
@@ -96,12 +73,10 @@ class App extends Component {
   }
 
   onInputChange = (event) => {
-    // console.log(event.target.value);
     this.setState({input: event.target.value});
   }
 
   onButtonSubmit = () => {
-    // console.log('click');
     this.setState({imageUrl: this.state.input});
     fetch('https://face-recognition-server-mss.herokuapp.com/imageurl', {
       method: 'post',
@@ -129,7 +104,6 @@ class App extends Component {
       }
       this.displayFaceBox(this.calculateFaceLocation(response))
     })
-        // console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
     .catch(err => console.log(err));
         // there was an error
   }
@@ -146,14 +120,12 @@ class App extends Component {
   
 
   render() {
-  // const  { isSignedIn, imageUrl, route, box } = this.state;
   return (
     <div className="App">
       <Particles className='particles' params={particlesOptions}/>
       <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
       { this.state.route === 'home'
       ? <div> 
-          <Logo />
           <Rank name={this.state.user.name} entries={this.state.user.entries} />
           <ImageLinkForm 
           onInputChange={this.onInputChange} 
